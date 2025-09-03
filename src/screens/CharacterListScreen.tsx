@@ -47,7 +47,7 @@ export default function CharacterListScreen() {
                 data={characters}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => navigation.navigate("MovieDetail", { characterId: item.id })}>
+                        <TouchableOpacity onPress={() => navigation.navigate("CharacterDetailsScreen", { characterId: item.id })}>
                         <CharacterRow character={item} />
                     </TouchableOpacity>
                 )}

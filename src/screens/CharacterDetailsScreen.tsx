@@ -6,11 +6,46 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 import { useRoute } from "@react-navigation/native"
 import { useState } from "react"
 import { Character } from "../components/CharacterRow"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function CharacterDetailsScreen() {
+  const route = useRoute();
+  const { characterId } = route.params as { characterId: number };
+  const [character, setCharacter] = useState<Character | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-    const route = useRoute();
-    const {character} = route.params as { character: Character };
+  useEffect(() => {
+    async function fetchCharacter() {
+      try {
+        setLoading(true);
+        const response = await axios.get(`https://www.demonslayer-api.com/api/v1/characters?id=${characterId}`);
+        setCharacter(response.data[0]);
+      } catch (e) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCharacter();
+  }, [characterId]);
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="#b535eb" />
+      </View>
+    );
+  }
+
+  if (error || !character) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Erro ao carregar personagem.</Text>
+      </View>
+    );
+  }
 
     return (
         <SafeAreaProvider>

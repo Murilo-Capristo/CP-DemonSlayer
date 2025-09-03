@@ -4,7 +4,6 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 
 
 import { useRoute } from "@react-navigation/native"
-import { useState } from "react"
 import { Character } from "../components/CharacterRow"
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -21,7 +20,7 @@ export default function CharacterDetailsScreen() {
       try {
         setLoading(true);
         const response = await axios.get(`https://www.demonslayer-api.com/api/v1/characters?id=${characterId}`);
-        setCharacter(response.data[0]);
+        setCharacter((response.data as Character[])[0]);
       } catch (e) {
         setError(true);
       } finally {

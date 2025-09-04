@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Image, ScrollView, Alert } from "react-native"
+import { View, StyleSheet, Text, Image, ScrollView, Alert, ActivityIndicator } from "react-native"
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"    
 

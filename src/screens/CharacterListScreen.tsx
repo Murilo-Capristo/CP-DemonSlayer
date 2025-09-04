@@ -13,8 +13,6 @@ export default function CharacterListScreen() {
     queryKey: ['characters'],
     queryFn: getCharacters,
   });
-  console.log('Characters fetched:', characters);
-
 //   useFocusEffect(
 //     useCallback(() => {
 //       queryClient.invalidateQueries({ queryKey: ['characters'] });
@@ -41,20 +39,24 @@ export default function CharacterListScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-<FlatList
-  data={characters ?? []}
-  keyExtractor={(item) => item.id.toString()}
-  renderItem={({ item }) => (
-    <TouchableOpacity
-      onPress={() =>
-        navigation.navigate("CharacterDetailsScreen", { characterId: item.id })
-      }
-    >
-      <CharacterRow character={item} />
-    </TouchableOpacity>
-  )}
-  showsVerticalScrollIndicator={false}
-/>
+        <FlatList
+          data={characters ?? []}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => navigation.navigate("CharacterDetailsScreen", { characterId: item.id })}>
+              <CharacterRow character={item} />
+            </TouchableOpacity>
+          )}
+        //   refreshControl={
+        //     <RefreshControl
+        //       refreshing={isFetching}
+        //       onRefresh={refetch}
+        //       colors={["#eb4435"]}
+        //       tintColor="#eb4435"
+        //     />
+        //   }
+          showsVerticalScrollIndicator={false}
+        />
       </SafeAreaView>
     </SafeAreaProvider>
   );

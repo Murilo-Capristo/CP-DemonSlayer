@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 60,
+    height: 60
   },
   textContainer: {
     flex: 1,

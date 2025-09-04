@@ -20,7 +20,7 @@ export default function CharacterDetailsScreen() {
       try {
         setLoading(true);
         const response = await axios.get(`https://www.demonslayer-api.com/api/v1/characters?id=${characterId}`);
-        setCharacter((response.data as Character[])[0]);
+        setCharacter((response.data.content as Character[])[0]);
       } catch (e) {
         setError(true);
       } finally {
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 24,
         fontWeight: "bold",
-        color: "#b535eb",
+        color: "#000000",
     },
     infoContainer: {
         flexDirection: "row",
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     },
     info: {
         fontSize: 16,
-        color: "#333",
+        color: "#000000",
         fontWeight: "bold",
     },
     descriptionContainer: {
@@ -112,14 +112,16 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 16,
-        color: "#555",
+        color: "#000000",
         marginBottom: 16,
-        lineHeight: 22,
-    },
+        textAlign: "justify",
+        },
     quote: {
         fontSize: 18,
         fontStyle: "italic",
-        color: "#b535eb",   
+        backgroundColor: "#424242",
+        borderRadius: 8,
+        color: "#ffffff",   
         textAlign: "center",     
     },
 })

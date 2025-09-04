@@ -1,6 +1,8 @@
-import { View, StyleSheet, Text, Image, ScrollView, Alert, ActivityIndicator } from "react-native"
+import { View, StyleSheet, Text, Image, ScrollView, ActivityIndicator, ImageBackground } from "react-native";
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"    
+import background_demon from '../../assets/background-demon.png'
+import background_human from '../../assets/background-human.png'
 
 
 import { useRoute } from "@react-navigation/native"
@@ -45,83 +47,109 @@ export default function CharacterDetailsScreen() {
       </View>
     );
   }
+const backgroundImage = character?.race === "Human" ? background_human : background_demon;
 
-    return (
-        <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1, padding: 16 }}>
-            <View>
-                <Image 
-                    source={{ uri: character.img }} 
-                    style={{ width: '100%', height: 300, borderRadius: 8 }}
-                    />
+ return (
+          <ImageBackground source={backgroundImage} style={styles.background} resizeMode="cover">
+
+    <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          <Image 
+            source={{ uri: character.img }}
+            style={styles.characterImage}
+            resizeMode="contain"
+          />
+
+          <View style={styles.infoCard}>
+            <Text style={styles.name}>{character.name}</Text>
+
+            <View style={styles.row}>
+              <Text style={styles.label}>Idade: <Text style={styles.value}>{character.age}</Text></Text>
+              <Text style={styles.label}>Raça: <Text style={styles.value}>{character.race}</Text></Text>
+              <Text style={styles.label}>Gênero: <Text style={styles.value}>{character.gender}</Text></Text>
             </View>
 
-            <View style={styles.nameContainer}>
-                {/* Name */}
-                <Text style={styles.name}>{character.name}</Text>
-            </View>
+            <Text style={styles.description}>{character.description}</Text>
+            <Text style={styles.quote}>"{character.quote}"</Text>
+          </View>
+        </ScrollView>
+    </SafeAreaView>
+          </ImageBackground>
 
-                {/* Infos*/}
-            <View style={styles.infoContainer}>
-                <Text style={styles.info}>
-                Idade: <Text style={{color: "red"}}>{character.age}</Text>
-                </Text>
-                <Text style={styles.info}>
-                Raça: <Text style={{color: "red"}}>{character.race}</Text>
-                </Text>
-                <Text style={styles.info}>
-                Gênero: <Text style={{color: "red"}}>{character.gender}</Text>
-                </Text>                
-            </View>
-
-            {/* Desc + Fala*/}
-            <ScrollView
-             style={styles.descriptionContainer}
-             contentContainerStyle={{ paddingBottom: 20 }}
-             >
-                <Text style={styles.description}>{character.description}</Text>
-                <Text style={styles.quote}>"{character.quote}"</Text>
-            </ScrollView>
-        </SafeAreaView>
-        </SafeAreaProvider>
-    );
+  );
 }
+
 const styles = StyleSheet.create({
-    nameContainer: {
-        marginTop: 16,
-        marginBottom: 8,
-        alignItems: "center",
-    },
-    name: {
-        fontSize: 24,
-        fontWeight: "bold",
-        color: "#000000",
-    },
-    infoContainer: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        marginBottom: 16,
-    },
-    info: {
-        fontSize: 16,
-        color: "#000000",
-        fontWeight: "bold",
-    },
-    descriptionContainer: {
-        flex: 1,
-    },
-    description: {
-        fontSize: 16,
-        color: "#000000",
-        marginBottom: 16,
-        textAlign: "justify",
-        },
-    quote: {
-        fontSize: 18,
-        fontStyle: "italic",
-        backgroundColor: "#424242",
-        borderRadius: 8,
-        color: "#ffffff",   
-        textAlign: "center",     
-    },
-})
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  scrollContent: {
+    alignItems: 'center',
+    paddingTop: 20,
+    paddingHorizontal: 16,
+    paddingBottom: 40,
+  },
+  characterImage: {
+    width: '80%',
+    height: undefined,
+    aspectRatio: 1,
+    marginBottom: -30, 
+    zIndex: 1,
+  },
+  infoCard: {
+    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 16,
+    zIndex: 0,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+    height: "100%",
+  },
+  name: {
+    fontSize: 34,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 12,
+    marginTop: 18,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 12,
+  },
+  label: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    backgroundColor: '#cacaca',
+    borderRadius: 8,
+    padding: 4,
+  },
+  value: {
+    color: 'red',
+    fontWeight: 'normal',
+  },
+  description: {
+    fontSize: 16,
+    textAlign: 'justify',
+    marginBottom: 12,
+  },
+  quote: {
+    fontStyle: 'italic',
+    backgroundColor: '#424242',
+    borderRadius: 8,
+    color: '#fff',
+    textAlign: 'center',
+    padding: 8,
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

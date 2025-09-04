@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, TouchableOpacity, ActivityIndicator, RefreshControl, FlatList } from "react-native";
+import { View, StyleSheet, Text, Image,  TouchableOpacity, ActivityIndicator, RefreshControl, FlatList } from "react-native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { SwipeListView } from "react-native-swipe-list-view";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -39,6 +39,11 @@ export default function CharacterListScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
+        <Image source={require('../../assets/logo.png')} style={{ width: 200, height: 160, alignSelf: 'center', marginBottom: 10, marginTop: 10 }} resizeMode="contain">
+        </Image>
+        <Text style={{ fontSize: 17, fontWeight:'500', textAlign: 'center', marginBottom: 30 }}>
+          Escolha seu personagem abaixo
+        </Text>
         <FlatList
           data={characters ?? []}
           keyExtractor={(item) => item.id.toString()}

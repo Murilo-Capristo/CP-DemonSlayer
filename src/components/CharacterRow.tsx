@@ -14,10 +14,15 @@ export type Character = {
 export default function CharacterRow({ character }: { character: Character }) {
   return(
         <View style={styles.container}>
-          <Image source={{ uri: character.img }} style={styles.image} />
+
+          <View>
+              <Image source={{ uri: character.img }} style={styles.image} />
+          </View>
+          
           <View style={styles.textContainer}>
             <Text style={styles.name}>{character.name}</Text>
           </View>
+
         </View>
   )
 }
@@ -25,14 +30,21 @@ export default function CharacterRow({ character }: { character: Character }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    backgroundColor: "#ebebeb",
+    marginVertical: 8,
+    borderRadius: 8,
+    justifyContent: "space-around",
   },
   image: {
-    width: 60,
-    height: 60
+    width: 70,
+    height: 100,
+    margin: 4,
+    marginLeft: 20,
   },
   textContainer: {
     flex: 1,
     justifyContent: "center",
+    alignItems: "center",
   },
   name: {
     fontSize: 18,

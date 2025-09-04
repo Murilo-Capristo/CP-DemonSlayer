@@ -19,12 +19,15 @@ export default function App() {
           <Stack.Screen 
             name="CharacterListScreen" 
             component={CharacterListScreen} 
-            options={{ title: 'Personagens' }}
+            options={{ title: 'Demon Slayer', headerTitleAlign: 'center' }}
           />
           <Stack.Screen 
             name="CharacterDetailsScreen" 
             component={CharacterDetailsScreen} 
-            options={{ title: 'Detalhes do Personagem' }}
+            options={{ 
+              title: 'Detalhes do Personagem', 
+              headerTitleAlign: 'center',
+              headerBackTitle: 'Demon Slayer',}}
           />
         </Stack.Navigator>
       </NavigationContainer>

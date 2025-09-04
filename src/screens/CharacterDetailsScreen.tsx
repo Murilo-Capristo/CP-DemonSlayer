@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: 'bold',
-    fontSize: 16,
-    backgroundColor: '#cacaca',
+    fontSize: 12,
+    backgroundColor: '#eeeeee',
     borderRadius: 8,
     padding: 4,
   },
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   quote: {
     fontStyle: 'italic',
-    backgroundColor: '#424242',
+    backgroundColor: '#000000',
     borderRadius: 8,
     color: '#fff',
     textAlign: 'center',
